@@ -156,8 +156,8 @@ void acquisition::Capture::load_cameras() {
         
                 cams.push_back(cam);
                 
-                camera_image_pubs.push_back(nh_.advertise<sensor_msgs::Image>("camera_array/"+cam_names_[j]+"/image_raw", 1));
-                camera_info_pubs.push_back(nh_.advertise<sensor_msgs::CameraInfo>("camera_array/"+cam_names_[j]+"/camera_info", 1));
+                camera_image_pubs.push_back(nh_.advertise<sensor_msgs::Image>("/"+cam_names_[j]+"/image_raw", 1));
+                camera_info_pubs.push_back(nh_.advertise<sensor_msgs::CameraInfo>("/"+cam_names_[j]+"/camera_info", 1));
                 img_msgs.push_back(sensor_msgs::ImagePtr());
                 
                 if (PUBLISH_CAM_INFO_){
@@ -489,7 +489,7 @@ void acquisition::Capture::init_cameras(bool soft = false) {
             if (!soft) {
 
                 cams[i].set_color(color_);
-                cams[i].setIntValue("BinningHorizontal", binning_);
+                //cams[i].setIntValue("BinningHorizontal", binning_);
                 cams[i].setIntValue("BinningVertical", binning_);
 
                 cams[i].setEnumValue("ExposureMode", "Timed");
@@ -513,14 +513,14 @@ void acquisition::Capture::init_cameras(bool soft = false) {
                 // set only master to be software triggered
                 if (cams[i].is_master()) { 
                     if (MAX_RATE_SAVE_){
-                      cams[i].setEnumValue("LineSelector", "Line2");
-                      cams[i].setEnumValue("LineMode", "Output");
+                      //cams[i].setEnumValue("LineSelector", "Line2");
+                      //cams[i].setEnumValue("LineMode", "Output");
                       cams[i].setBoolValue("AcquisitionFrameRateEnable", false);
                       //cams[i].setFloatValue("AcquisitionFrameRate", 170);
                     }else{
                       cams[i].setEnumValue("TriggerMode", "On");
-                      cams[i].setEnumValue("LineSelector", "Line2");
-                      cams[i].setEnumValue("LineMode", "Output");
+                      //cams[i].setEnumValue("LineSelector", "Line2");
+                      //cams[i].setEnumValue("LineMode", "Output");
                       cams[i].setEnumValue("TriggerSource", "Software");
                     }
                     //cams[i].setEnumValue("LineSource", "ExposureActive");
@@ -528,10 +528,10 @@ void acquisition::Capture::init_cameras(bool soft = false) {
 
                 } else {
                     cams[i].setEnumValue("TriggerMode", "On");
-                    cams[i].setEnumValue("LineSelector", "Line3");
+                    //cams[i].setEnumValue("LineSelector", "Line3");
                     cams[i].setEnumValue("TriggerSource", "Line3");
                     cams[i].setEnumValue("TriggerSelector", "FrameStart");
-                    cams[i].setEnumValue("LineMode", "Input");
+                    //cams[i].setEnumValue("LineMode", "Input");
                     
 //                    cams[i].setFloatValue("TriggerDelay", 40.0);
                     cams[i].setEnumValue("TriggerOverlap", "ReadOut");//"Off"

@@ -1,8 +1,8 @@
 cam_ids:
-- 17197555
+- 16363749
 cam_aliases:
-- cam0
-master_cam: 17197555
+- blackfly
+master_cam: 16363749
 skip: 20
 delay: 0
 
@@ -10,7 +10,7 @@ delay: 0
 
 #save_path: ~/projects/data
 #save_type: .bmp #binary or .tiff or .bmp
-#binning: 1 # going from 2 to 1 requires cameras to be unplugged and replugged
+binning: 1 # going from 2 to 1 requires cameras to be unplugged and replugged
 #color: false
 #frames: 50
 #soft_framerate: 4 # this frame rate reflects to the software frame rate set using ros::rate
